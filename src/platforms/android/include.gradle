@@ -1,0 +1,27 @@
+//apply from: "gradle-helpers/AnalyticsCollector.gradle"
+//apply plugin: 'com.heapanalytics.android'
+//
+android {
+	defaultConfig {
+		ext { // Add this section to enable Heap event capture.
+			heapEnabled = true
+			heapAutoInit = true
+			heapEnvId = "2087918253"//<your-env-id>
+		}
+	}
+}
+
+repositories {
+	jcenter()
+	mavenCentral()
+	maven {
+		url "https://maven.google.com"
+	}
+}
+
+
+dependencies {
+	implementation "com.heapanalytics.android:heap-android-client:1.5.1"
+}
+
+apply plugin: "com.heapanalytics.android"
