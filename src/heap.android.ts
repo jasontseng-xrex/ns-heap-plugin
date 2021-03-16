@@ -1,57 +1,60 @@
-import * as application from 'tns-core-modules/application';
 import * as utils from "tns-core-modules/utils/utils";
-let context = application.android.context;
-declare var cn: any;
+import { Common } from "./heap.common";
 
 declare const com: any;
-declare const android: any;
+// const Heap = com.heapanalytics.android.Heap;
 
-export class NSHeap {
+export class NSHeap extends Common {
+	constructor() {
+		super();
+		com.heapanalytics.android.internal.HeapImpl.skipInstrumentorChecks = true;
+	}
 
-    private readonly envId: string;
-    private readonly debugMode: boolean;
-    private Heap = com.heapanalytics.android.Heap;
+	static initialize(envId: string): void {
+		if (envId) {
+			if (com.heapanalytics.android.Heap) {
+				com.heapanalytics.android.Heap.init(
+					utils.ad.getApplicationContext(),
+					envId
+				);
+			} else {
+				console.log(
+					"HEAP PLUGIN: We can not find the cocoapod, make sure is added during building"
+				);
+			}
+		} else {
+			console.log("HEAP PLUGIN: You need to pass some envId to init");
+		}
+	}
 
-    constructor(envId: string, debugMode?: boolean) {
-        this.envId = envId;
-        this.debugMode = debugMode ? debugMode: false;
-    }
+	static identify(identity: string): void {
+		com.heapanalytics.android.Heap.identify(identity);
+	}
 
-    initialize(): void {
-        this.Heap.init(utils.ad.getApplicationContext(), this.envId, this.debugMode);
-    };
+	static track(event: string): void {
+		com.heapanalytics.android.Heap.track(event);
+	}
 
+	static trackWithProperties(
+		event: string,
+		properties: Map<String, String>
+	): void {
+		com.heapanalytics.android.Heap.track(event, properties);
+	}
 
-    identify(identity: string): void {
-        this.Heap.identify(identity);
-    };
+	static startEVPairing(): void {
+		com.heapanalytics.android.Heap.startEVPairing();
+	}
 
+	static stopEVPairing(): void {
+		com.heapanalytics.android.Heap.stopEVPairing();
+	}
 
-    track(event: string): void {
-        this.Heap.track(event);
-    };
+	static userId(): string {
+		return com.heapanalytics.android.Heap.getUserId();
+	}
 
-    trackWithProperties(event: string, properties: Map<String, String>): void {
-        this.Heap.track(event, properties);
-    };
-
-
-    startEVPairing(): void {
-        this.Heap.startEVPairing();
-    };
-
-    stopEVPairing(): void {
-        this.Heap.stopEVPairing();
-    };
-
-    userId(): string {
-        return this.Heap.getUserId();
-    }
-
-    getIdentity(): string {
-        return this.Heap.getIdentity();
-    }
-
+	static getIdentity(): string {
+		return com.heapanalytics.android.Heap.getIdentity();
+	}
 }
-
-

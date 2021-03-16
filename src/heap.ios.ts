@@ -1,127 +1,132 @@
-export class NSHeap {
+import { Common } from "./heap.common";
 
-    private readonly envId: string;
-    private readonly options: HeapOptions;
-    constructor(envId: string, options?: HeapOptions) {
-        this.envId = envId;
-        this.options = options;
-    }
+declare const Heap: any;
 
-    initialize(): void {
-        console.log(this.envId);
-        Heap.initialize(this.envId)
-    };
+export class NSHeap extends Common {
+	constructor() {
+		super();
+	}
 
-    initializeWithOptions(): void {
-        Heap.initializeWithOptions(this.envId, this.options)
-    };
+	static initialize(envId: string): void {
+		if (envId) {
+			if (Heap) {
+				Heap.initialize(envId);
+			} else {
+				console.log(
+					"HEAP PLUGIN: We can not find the cocoapod, make sure is added during building"
+				);
+			}
+		} else {
+			console.log("HEAP PLUGIN: You need to pass some envId to init");
+		}
+	}
 
+	static identify(identity: string): void {
+		Heap.identify(identity);
+	}
 
-    identify(identity: string): void {
-        Heap.identify(identity)
-    };
+	static resetIdentity() {
+		Heap.resetIdentity();
+	}
 
+	static track(event: string): void {
+		Heap.track(event);
+	}
 
-    resetIdentity() {
-        Heap.resetIdentity()
-    };
+	static trackWithProperties(
+		event: string,
+		properties: NSDictionary<any, any>
+	): void {
+		Heap.trackWithProperties(event, properties);
+	}
 
+	static addEventProperties(properties: NSDictionary<any, any>): void {
+		Heap.addEventProperties(properties);
+	}
 
-    track(event: string): void {
-        Heap.track(event)
-    };
+	static addUserProperties(properties: NSDictionary<any, any>): void {
+		Heap.addUserProperties(properties);
+	}
 
+	static changeInterval(interval: number): void {
+		Heap.changeInterval(interval);
+	}
 
-    trackWithProperties(event: string, properties: NSDictionary<any, any>): void {
-        Heap.trackWithProperties(event, properties)
-    };
+	static clearEventProperties(): void {
+		Heap.clearEventProperties();
+	}
 
+	static disableVisualizerPairingGesture(): void {
+		Heap.disableVisualizerPairingGesture();
+	}
 
-    addEventProperties(properties: NSDictionary<any, any>): void {
-        Heap.addEventProperties(properties)
-    };
+	static enableVisualizer(): void {
+		Heap.enableVisualizer();
+	}
 
-    addUserProperties(properties: NSDictionary<any, any>): void {
-        Heap.addUserProperties(properties)
-    };
+	static frameworkAutocaptureEventWithSourceWithSourceProperties(
+		event: string,
+		source: string,
+		sourceProperties: NSDictionary<any, any>
+	): void {
+		Heap.frameworkAutocaptureEventWithSourceWithSourceProperties(
+			event,
+			source,
+			sourceProperties
+		);
+	}
 
-    changeInterval(interval: number): void {
-        Heap.changeInterval(interval)
-    };
+	static frameworkTrackWithPropertiesWithSourceWithSourceProperties(
+		event: string,
+		properties: NSDictionary<any, any>,
+		source: string,
+		sourceProperties: NSDictionary<any, any>
+	) {
+		Heap.frameworkTrackWithPropertiesWithSourceWithSourceProperties(
+			event,
+			properties,
+			source,
+			sourceProperties
+		);
+	}
 
-    clearEventProperties() : void{
-        Heap.clearEventProperties()
-    };
+	static libVersion(): string {
+		return Heap.libVersion();
+	}
 
-    disableVisualizerPairingGesture(): void {
-        Heap.disableVisualizerPairingGesture()
-    };
+	static removeEventProperty(property: string) {
+		Heap.removeEventProperty(property);
+	}
 
-    enableVisualizer() : void{
-        Heap.enableVisualizer()
-    };
+	static setAppId(newAppId: string) {
+		Heap.setAppId(newAppId);
+	}
 
-    frameworkAutocaptureEventWithSourceWithSourceProperties(
-        event: string,
-        source: string,
-        sourceProperties: NSDictionary<any, any>): void {
-        Heap.frameworkAutocaptureEventWithSourceWithSourceProperties(event, source, sourceProperties);
-    };
+	static setEventProperties(properties: NSDictionary<any, any>) {
+		Heap.setEventProperties(properties);
+	}
 
-    frameworkTrackWithPropertiesWithSourceWithSourceProperties(event: string, properties: NSDictionary<any, any>, source: string, sourceProperties: NSDictionary<any, any>) {
-        Heap.frameworkTrackWithPropertiesWithSourceWithSourceProperties(event, properties, source, sourceProperties)
-    };
+	static startDebug() {
+		Heap.startDebug();
+	}
 
+	static startEVPairing() {
+		Heap.startEVPairing();
+	}
 
-    libVersion(): string {
-        return Heap.libVersion()
-    };
+	static stopDebug() {
+		Heap.stopDebug();
+	}
 
-    alloc(): Heap {
-        return Heap.alloc();
-    };
+	static stopEVPairing() {
+		Heap.stopEVPairing();
+	}
 
-    new(): Heap  {
-        return Heap.new();
-    };
+	static unsetEventProperty(property: string): void {
+		Heap.unsetEventProperty(property);
+	}
 
-    removeEventProperty(property: string) {
-        Heap.removeEventProperty(property)
-    };
-
-
-    setAppId(newAppId: string) {
-        Heap.setAppId(newAppId)
-    };
-
-    setEventProperties(properties: NSDictionary<any, any>) {
-        Heap.setEventProperties(properties)
-    };
-
-    startDebug() {
-        Heap.startDebug()
-    };
-
-    startEVPairing() {
-        Heap.startEVPairing()
-    };
-
-    stopDebug() {
-        Heap.stopDebug()
-    };
-
-    stopEVPairing() {
-        Heap.stopEVPairing()
-    };
-
-
-
-    unsetEventProperty(property: string): void {
-        Heap.unsetEventProperty(property)
-    };
-
-    userId(): string {
-        return Heap.userId();
-    }
-
+	static userId(): string {
+		return Heap.userId();
+	}
 }

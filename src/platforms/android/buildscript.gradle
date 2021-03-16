@@ -4,7 +4,7 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
-		classpath 'com.heapanalytics.android:heap-android-gradle:1.5.1'
+		classpath 'com.heapanalytics.android:heap-android-gradle:1.8.1'
 	}
 }
 
@@ -13,5 +13,5 @@ repositories {
 	jcenter()
 }
 dependencies {
-	classpath 'com.heapanalytics.android:heap-android-gradle:1.5.1'
+	classpath 'com.heapanalytics.android:heap-android-gradle:1.8.1'
 }

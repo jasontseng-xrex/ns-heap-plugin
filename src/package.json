@@ -1,6 +1,6 @@
 {
 	"name": "nativescript-heap-plugin",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Heap Analytics NativeScript plugin.",
 	"main": "heap",
 	"typings": "index.d.ts",
@@ -15,12 +15,12 @@
 		"url": "https://github.com/anikjp/nativescript-heap-plugin.git"
 	},
 	"scripts": {
-		"tsc": "npm i && tsc",
 		"build": "npm run tsc && npm run build.native",
 		"build.native": "node scripts/build-native.js",
+		"package": "cd ../publish && bash pack.sh",
+		"tsc": "npm i && tsc",
 		"tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
 		"ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**' --exclude '**/platforms/**'",
-		"prepack": "npm run build.native",
 		"demo-ng.ios": "npm i && cd ../demo-ng && tns run ios",
 		"demo-ng.android": "npm i && cd ../demo-ng && tns build android && tns run android",
 		"demo-ng.reset": "cd ../demo-ng && npx rimraf -- hooks node_modules platforms package-lock.json",

@@ -1,32 +1,38 @@
 /// <reference types="tns-platform-declarations/ios" />
-export declare class NSHeap {
-    private readonly envId;
-    private readonly options;
-    constructor(envId: string, options?: HeapOptions);
-    initialize(): void;
-    initializeWithOptions(): void;
-    addEventProperties(properties: NSDictionary<any, any>): void;
-    addUserProperties(properties: NSDictionary<any, any>): void;
-    changeInterval(interval: number): void;
-    clearEventProperties(): void;
-    disableVisualizerPairingGesture(): void;
-    enableVisualizer(): void;
-    frameworkAutocaptureEventWithSourceWithSourceProperties(event: string, source: string, sourceProperties: NSDictionary<any, any>): void;
-    frameworkTrackWithPropertiesWithSourceWithSourceProperties(event: string, properties: NSDictionary<any, any>, source: string, sourceProperties: NSDictionary<any, any>): void;
-    identify(identity: string): void;
-    libVersion(): string;
-    alloc(): Heap;
-    new(): Heap;
-    removeEventProperty(property: string): void;
-    resetIdentity(): void;
-    setAppId(newAppId: string): void;
-    setEventProperties(properties: NSDictionary<any, any>): void;
-    startDebug(): void;
-    startEVPairing(): void;
-    stopDebug(): void;
-    stopEVPairing(): void;
-    track(event: string): void;
-    trackWithProperties(event: string, properties: NSDictionary<any, any>): void;
-    unsetEventProperty(property: string): void;
-    userId(): string;
+export declare class NSHeap extends Common {
+	static initialize(envId: string): void;
+	static addEventProperties(properties: NSDictionary<any, any>): void;
+	static addUserProperties(properties: NSDictionary<any, any>): void;
+	static changeInterval(interval: number): void;
+	static clearEventProperties(): void;
+	static disableVisualizerPairingGesture(): void;
+	static enableVisualizer(): void;
+	static frameworkAutocaptureEventWithSourceWithSourceProperties(
+		event: string,
+		source: string,
+		sourceProperties: NSDictionary<any, any>
+	): void;
+	static frameworkTrackWithPropertiesWithSourceWithSourceProperties(
+		event: string,
+		properties: NSDictionary<any, any>,
+		source: string,
+		sourceProperties: NSDictionary<any, any>
+	): void;
+	static identify(identity: string): void;
+	static libVersion(): string;
+	static removeEventProperty(property: string): void;
+	static resetIdentity(): void;
+	static setAppId(newAppId: string): void;
+	static setEventProperties(properties: NSDictionary<any, any>): void;
+	static startDebug(): void;
+	static startEVPairing(): void;
+	static stopDebug(): void;
+	static stopEVPairing(): void;
+	static track(event: string): void;
+	static trackWithProperties(
+		event: string,
+		properties: NSDictionary<any, any>
+	): void;
+	static unsetEventProperty(property: string): void;
+	static userId(): string;
 }
