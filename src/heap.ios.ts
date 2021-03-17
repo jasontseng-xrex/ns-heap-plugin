@@ -64,32 +64,6 @@ export class NSHeap extends Common {
 		Heap.enableVisualizer();
 	}
 
-	static frameworkAutocaptureEventWithSourceWithSourceProperties(
-		event: string,
-		source: string,
-		sourceProperties: NSDictionary<any, any>
-	): void {
-		Heap.frameworkAutocaptureEventWithSourceWithSourceProperties(
-			event,
-			source,
-			sourceProperties
-		);
-	}
-
-	static frameworkTrackWithPropertiesWithSourceWithSourceProperties(
-		event: string,
-		properties: NSDictionary<any, any>,
-		source: string,
-		sourceProperties: NSDictionary<any, any>
-	) {
-		Heap.frameworkTrackWithPropertiesWithSourceWithSourceProperties(
-			event,
-			properties,
-			source,
-			sourceProperties
-		);
-	}
-
 	static libVersion(): string {
 		return Heap.libVersion();
 	}
